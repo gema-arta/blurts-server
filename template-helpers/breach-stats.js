@@ -28,11 +28,11 @@ function getBreachStats(args) {
     // If a user has resolved at least one breach:
     // Change the password stat to show the number of password-exposing unresolved breaches.
     const remainingExposedPasswords = passwordStat.count - passwordStat.numResolved;
-    passwordStat.subhead = localize(locales, "unresolved-passwords-exposed", { passwords: remainingExposedPasswords });
+    passwordStat.subhead = localize(locales, "unresolved-passwords-exposed", { numPasswords: remainingExposedPasswords });
     passwordStat.displayCount = remainingExposedPasswords;
 
     // Change the total number of breaches callout to show the total number of resolved breaches
-    breachesStat.subhead = localize(locales, "known-data-breaches-resolved", { breaches: breachesStat.numResolved });
+    breachesStat.subhead = localize(locales, "known-data-breaches-resolved", { numBreaches: breachesStat.numResolved });
     breachesStat.displayCount = breachesStat.numResolved;
   } else {
 
