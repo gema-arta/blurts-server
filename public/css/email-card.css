@@ -120,6 +120,7 @@
 }
 
 .active .show-additional-breaches.hide .breach-card {
+  display: none;
   max-height: 0;
 }
 
@@ -144,7 +145,7 @@
 }
 
 .email-card.active .hide-additional-breaches.hide .breach-card,
-.email-card.inactive .hide-additinal-breaches.hide .breach-card {
+.email-card.inactive .hide-additional-breaches.hide .breach-card {
   display: none !important;
 }
 
