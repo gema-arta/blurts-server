@@ -67,17 +67,26 @@ function getProgressMessage(locales, percentBreachesResolved) {
   return formatProgressMessage(localize(locales, "progress-message-4"));
 }
 
-function makeProgressBar(userBreachTotals, locales) {
-  const numResolvedBreaches = userBreachTotals.numResolved;
-  const numTotalBreaches = userBreachTotals.count;
-  const percentBreachesResolved = Math.floor(numResolvedBreaches / numTotalBreaches * 100);
 
-  if (percentBreachesResolved === 0) {
+function makeProgressBar(userBreachTotals, locales) {
+  const numTotalBreaches = userBreachTotals.count;
+  const numResolvedBreaches = userBreachTotals.numResolved;
+
+  // Show nothing if there are no found breaches for any email
+  if (numTotalBreaches === 0) {
+    return null;
+  }
+
+  // Show an introductory message about resolving breaches if the user
+  // has found breaches, but hasn't resolved any of them yet.
+  if (numResolvedBreaches === 0) {
     return {
       subhead: localize(locales, "progress-intro-subhead"),
       progressMessage: localize(locales, "progress-intro-message"),
     };
   }
+
+  const percentBreachesResolved = Math.floor(numResolvedBreaches / numTotalBreaches * 100);
   if (percentBreachesResolved === 100) {
     return {
       subhead: localize(locales, "progress-complete"),
@@ -85,6 +94,8 @@ function makeProgressBar(userBreachTotals, locales) {
     };
   }
 
+  // Show the progress bar if a user has resolved at least one breach
+  // and has others left to resolve.
   return {
     progressStatus: localize(locales, "progress-status", {
       "numResolvedBreaches": numResolvedBreaches,

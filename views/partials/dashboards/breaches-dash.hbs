@@ -6,7 +6,7 @@
       <div class="dash-stats">
         {{> breach-stats addClasses="user-stats"}}
       </div>
-
+      {{#if progressBar}}
       <div class="progress-bar-wrapper">
         {{#if progressBar.progressStatus}}
           <div class="flx space-between h-padding">
@@ -26,6 +26,7 @@
           </div>
         {{/if}}
       </div>
+    {{/if}}
     </div>
   </main>
 {{/getBreachStats}}
