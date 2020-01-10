@@ -151,7 +151,8 @@ function getBreachDetail(args) {
     };
   }
 
-  if (AppConstants.BREACH_RESOLUTION_ENABLED) {
+  const BREACH_RESOLUTION_ENABLED = (AppConstants.BREACH_RESOLUTION_ENABLED === 1);
+  if (BREACH_RESOLUTION_ENABLED && args.data.root.affectedEmailAddresses) {
     const affectedEmails = args.data.root.affectedEmailAddresses;
     const numAffectedEmails = affectedEmails.length;
 
